@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | HMS Pro</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b,
+    #312e81
+    );
+    padding:20px;
+}
+
+.login-card{
+
+    width:100%;
+    max-width:500px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+}
+
+.card-header{
+
+    text-align:center;
+
+    padding:35px;
+
+    background:
+    rgba(0,0,0,.20);
+
+    border:none;
+}
+
+.card-header h2{
+
+    color:white;
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.card-header p{
+
+    color:#cbd5e1;
+
+    margin:0;
+}
+
+.card-body{
+    padding:35px;
+}
+
+.form-label{
+
+    color:white;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+.form-control{
+
+    height:58px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:
+    rgba(255,255,255,.08);
+
+    color:white;
+
+    padding-left:18px;
+
+    margin-bottom:20px;
+}
+
+.form-control::placeholder{
+    color:#cbd5e1;
+}
+
+.form-control:focus{
+
+    background:
+    rgba(255,255,255,.12);
+
+    color:white;
+
+    border:1px solid #60a5fa;
+
+    box-shadow:
+    0 0 0 4px rgba(96,165,250,.25);
+}
+
+.login-btn{
+
+    width:100%;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+    );
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 15px 30px rgba(59,130,246,.35);
+}
+
+.alert{
+
+    border:none;
+
+    border-radius:15px;
+
+    font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-card">
+
+    <div class="card-header">
+
+        <h2>🏥 HMS Pro</h2>
+
+        <p>
+            Admin Login Panel
+        </p>
+
+    </div>
+
+    <div class="card-body">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <div class="alert alert-danger">
+            {{ messages[0] }}
+        </div>
+
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+
+            <label class="form-label">
+                Email Address
+            </label>
+
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Enter Email"
+                   required>
+
+            <label class="form-label">
+                Password
+            </label>
+
+            <input type="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Enter Password"
+                   required>
+
+            <button type="submit"
+                    class="login-btn">
+
+                🔐 Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

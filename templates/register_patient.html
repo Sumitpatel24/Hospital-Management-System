@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Register Patient</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html,
+body{
+    min-height:100vh;
+}
+
+body{
+
+    background:
+    linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 35%,
+    #312e81 70%,
+    #4f46e5 100%
+    );
+
+    background-attachment:fixed;
+    position:relative;
+    overflow-x:hidden;
+}
+
+/* Background Glow */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    top:-150px;
+    left:-150px;
+
+    border-radius:50%;
+
+    background:
+    rgba(16,185,129,.15);
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    bottom:-150px;
+    right:-150px;
+
+    border-radius:50%;
+
+    background:
+    rgba(99,102,241,.18);
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+/* Container */
+
+.container{
+    max-width:900px;
+}
+
+/* Main Card */
+
+.card{
+
+    width:100%;
+
+    background:
+    rgba(15,23,42,.72);
+
+    backdrop-filter:blur(25px);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.45);
+}
+
+/* Header */
+
+.card-header{
+
+    background:
+    linear-gradient(
+    135deg,
+    #10b981,
+    #059669,
+    #047857
+    ) !important;
+
+    border:none !important;
+
+    padding:30px;
+}
+
+.card-header h2{
+
+    color:white;
+
+    font-size:36px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+}
+
+.card-header p{
+
+    color:#d1fae5;
+
+    margin:0;
+
+    font-size:15px;
+}
+
+/* Body */
+
+.card-body{
+    padding:35px;
+}
+
+/* Labels */
+
+.form-label{
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+/* Inputs */
+
+.form-control,
+.form-select{
+
+    height:58px;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    color:white;
+
+    padding-left:18px;
+
+    transition:.3s;
+}
+
+.form-control::placeholder{
+    color:#cbd5e1;
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    background:
+    rgba(255,255,255,.12);
+
+    border:
+    1px solid #60a5fa;
+
+    color:white;
+
+    box-shadow:
+    0 0 0 4px rgba(96,165,250,.25),
+    0 0 20px rgba(96,165,250,.25);
+}
+
+/* Textarea */
+
+textarea.form-control{
+
+    height:140px;
+
+    resize:none;
+
+    padding-top:15px;
+}
+
+/* Select */
+
+.form-select option{
+    color:black;
+}
+
+/* Register Button */
+
+.btn-success{
+
+    height:60px;
+
+    border:none;
+
+    border-radius:16px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+    );
+
+    transition:.3s;
+}
+
+.btn-success:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 15px 35px rgba(16,185,129,.45);
+}
+
+/* Dashboard Button */
+
+.btn-secondary{
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:12px 30px;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    135deg,
+    #64748b,
+    #475569
+    );
+
+    transition:.3s;
+}
+
+.btn-secondary:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 10px 25px rgba(100,116,139,.35);
+}
+
+/* Success Alert */
+
+.alert-success{
+
+    background:
+    rgba(16,185,129,.15);
+
+    border:
+    1px solid rgba(16,185,129,.4);
+
+    color:#6ee7b7;
+
+    border-radius:14px;
+
+    font-weight:600;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#10b981;
+    border-radius:20px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .card-header{
+        padding:25px;
+    }
+
+    .card-header h2{
+        font-size:28px;
+    }
+
+    .card-body{
+        padding:20px;
+    }
+
+    .form-control,
+    .form-select{
+        height:52px;
+    }
+
+    .btn-success{
+        height:55px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100 py-5">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>🏥 Register New Patient</h2>
+
+            <p>
+                Add patient records into Hospital Management System
+            </p>
+
+        </div>
+
+        <div class="card-body">
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            <div class="alert alert-success" id="successMsg">
+                {{ messages[0] }}
+            </div>
+
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+
+                <label class="form-label">
+                    Patient Name
+                </label>
+
+                <input type="text"
+                       name="name"
+                       class="form-control mb-4"
+                       placeholder="Enter Patient Name"
+                       required>
+
+                <label class="form-label">
+                    Age
+                </label>
+
+                <input type="text"
+                       name="age"
+                       class="form-control mb-4"
+                       placeholder="Enter Age"
+                       maxlength="3"
+                       oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                       required>
+
+                <label class="form-label">
+                    Gender
+                </label>
+
+                <select name="gender"
+                        class="form-select mb-4"
+                        required>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+                <label class="form-label">
+                    Phone Number
+                </label>
+
+                <input type="text"
+                       name="phone"
+                       class="form-control mb-4"
+                       placeholder="Enter 10 Digit Phone Number"
+                       maxlength="10"
+                       pattern="[0-9]{10}"
+                       required>
+
+                <label class="form-label">
+                    Disease / Problem
+                </label>
+
+                <textarea
+                        name="disease"
+                        class="form-control mb-4"
+                        placeholder="Enter Disease / Problem"
+                        required></textarea>
+
+                <button type="submit"
+                        class="btn btn-success w-100">
+
+                    ➕ Register Patient
+
+                </button>
+
+            </form>
+
+            <div class="text-center mt-4">
+
+                <a href="/dashboard"
+                   class="btn btn-secondary">
+
+                    ← Back To Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+setTimeout(function(){
+
+    let msg = document.getElementById("successMsg");
+
+    if(msg){
+
+        msg.style.transition = "0.5s";
+        msg.style.opacity = "0";
+
+        setTimeout(function(){
+            msg.style.display = "none";
+        },500);
+    }
+
+},2000);
+
+</script>
+
+</body>
+</html>

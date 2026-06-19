@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed,
+        #9333ea
+    );
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    background:#0f172a;
+    min-height:100vh;
+    padding:25px;
+    box-shadow:8px 0 30px rgba(0,0,0,.25);
+}
+
+.sidebar h3{
+    color:white;
+    font-weight:800;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar .btn{
+    width:100%;
+    margin-bottom:12px;
+    border:none;
+    border-radius:14px;
+    padding:13px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.sidebar .btn:hover{
+    transform:translateX(8px);
+}
+
+.sidebar-btn{
+    display:block;
+    width:100%;
+    text-decoration:none;
+    text-align:center;
+    padding:14px;
+    margin-top:10px;
+    border-radius:14px;
+    font-weight:700;
+    color:white;
+    transition:.3s;
+}
+
+.sidebar-btn:hover{
+    transform:translateX(8px);
+    color:white;
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.dashboard-title{
+    color:white;
+    font-size:40px;
+    font-weight:800;
+    margin-bottom:25px;
+    text-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.stats-card{
+    color:white;
+}
+
+.stats-card .card-body{
+    padding:25px;
+}
+
+.stats-card h5{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.stats-card h1{
+    font-size:42px;
+    font-weight:800;
+}
+
+/* ==========================
+   CARD COLORS
+========================== */
+
+.patient-card{
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.doctor-card{
+    background:linear-gradient(135deg,#10b981,#059669);
+}
+
+.appointment-card{
+    background:linear-gradient(135deg,#6366f1,#4f46e5);
+}
+
+.revenue-card{
+    background:linear-gradient(135deg,#14b8a6,#0f766e);
+}
+
+.today-card{
+    background:linear-gradient(135deg,#06b6d4,#0891b2);
+}
+
+.month-card{
+    background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+}
+
+.busy-card{
+    background:linear-gradient(135deg,#ec4899,#be185d);
+}
+
+.disease-card{
+    background:linear-gradient(135deg,#f97316,#ea580c);
+}
+
+.best-doctor-card{
+    background:linear-gradient(135deg,#facc15,#eab308);
+    color:#111827;
+}
+
+.today-appointment-card{
+    background:linear-gradient(135deg,#22c55e,#15803d);
+}
+
+.bills-card{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+}
+
+.prescription-card{
+    background:linear-gradient(135deg,#8b5cf6,#d946ef);
+}
+
+.waiting-card{
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.completed-card{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.cancelled-card{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+/* ==========================
+   TABLES
+========================== */
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+    margin-bottom:0;
+}
+
+.table th{
+    background:#111827;
+    color:white;
+    text-align:center;
+    font-weight:600;
+}
+
+.table td{
+    text-align:center;
+    vertical-align:middle;
+    background:white;
+}
+
+.table-hover tbody tr:hover{
+    background:#f3f4f6;
+}
+
+/* ==========================
+   CARD HEADER
+========================== */
+
+.card-header{
+    border:none;
+    font-weight:700;
+}
+
+/* ==========================
+   BADGES
+========================== */
+
+.badge{
+    padding:8px 14px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+/* ==========================
+   CHART CARD
+========================== */
+
+.chart-card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* ==========================
+   REPORTS BUTTON
+========================== */
+
+.reports-btn{
+    background:linear-gradient(
+        135deg,
+        #8b5cf6,
+        #7c3aed
+    );
+}
+
+/* ==========================
+   BILLING BUTTON
+========================== */
+
+.billing-btn{
+    background:linear-gradient(
+        135deg,
+        #f59e0b,
+        #d97706
+    );
+}
+
+/* ==========================
+   GLASS EFFECT
+========================== */
+
+.glass-card{
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6366f1;
+    border-radius:10px;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .sidebar{
+        min-height:auto;
+    }
+
+    .dashboard-title{
+        font-size:28px;
+        text-align:center;
+    }
+
+    .stats-card h1{
+        font-size:32px;
+    }
+
+    .card{
+        margin-bottom:15px;
+    }
+}
+
+.password-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    color:white;
+    background:linear-gradient(
+        135deg,
+        #f59e0b,
+        #ea580c
+    );
+    margin-top:10px;
+    transition:.3s;
+}
+
+.password-btn:hover{
+    color:white;
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(245,158,11,.35);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+<div class="row">
+
+    <!-- Sidebar -->
+
+    <div class="col-md-2 sidebar p-3">
+
+        <h2 class="dashboard-title">
+          🏥 Hospital Management Dashboard
+        </h2>
+
+        <a href="/dashboard" class="btn btn-dark w-100 mb-2">
+            Dashboard
+        </a>
+
+        <a href="/patients" class="btn btn-dark w-100 mb-2">
+            Patients
+        </a>
+
+        <a href="/doctors" class="btn btn-dark w-100 mb-2">
+            Doctors
+        </a>
+
+        <a href="/appointments" class="btn btn-dark w-100 mb-2">
+            Appointments
+        </a>
+
+        <a href="/register_patient" class="btn btn-success w-100 mb-2">
+            Add Patient
+        </a>
+
+        <a href="/add_doctor" class="btn btn-primary w-100 mb-2">
+            Add Doctor
+        </a>
+
+        <a href="/add_appointment" class="btn btn-warning w-100 mb-2">
+            Book Appointment
+        </a>
+        
+        <a href="/prescriptions" class="sidebar-btn reports-btn">
+            💊 Prescription
+        </a>
+
+        <a href="/reports" class="sidebar-btn reports-btn">
+            📊 Reports
+        </a>
+
+        <a href="/billing" class="sidebar-btn billing-btn">
+            💰 Billing
+        </a>
+
+       <a href="/change_password" class="sidebar-btn password-btn">
+            🔐 Change Password
+        </a>
+
+        <a href="/logout" class="btn btn-danger w-100 mt-4">
+            Logout
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="col-md-10 p-4">
+
+        <h2 class="mb-4">
+            Hospital Management Dashboard
+        </h2>
+
+        <!-- Cards -->
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card patient-card">
+
+                    <div class="card-body">
+
+                        <h5>Total Patients</h5>
+
+                        <h1>
+                            {{ total_patients }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card doctor-card">
+                    <div class="card-body">
+
+                        <h5>Total Doctors</h5>
+
+                        <h1>
+                            {{ total_doctors }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card appointment-card">
+
+                    <div class="card-body">
+
+                        <h5>Total Appointments</h5>
+
+                        <h1>
+                            {{ total_appointments }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card revenue-card">
+
+                     <div class="card-body">
+
+                        <h5>💰 Total Revenue</h5>
+
+                            <h1>₹ {{ total_revenue }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+    <div class="card stats-card today-card">
+
+        <div class="card-body">
+
+            <h5>💵 Today's Revenue</h5>
+
+            <h1>₹ {{ today_revenue }}</h1>
+
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card stats-card month-card">
+
+                <div class="card-body">
+
+                     <h5>📈 Monthly Revenue</h5>
+
+                     <h1>₹ {{ month_revenue }}</h1>
+
+                </div>
+
+            </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+    <div class="card stats-card busy-card">
+
+        <div class="card-body">
+
+            <h5>🏆 Most Busy Doctor</h5>
+
+            {% if busy_doctor %}
+
+            <h3>{{ busy_doctor[0] }}</h3>
+
+            <p>
+                {{ busy_doctor[1] }} Appointments
+            </p>
+
+            {% else %}
+
+            <p>No Data</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+    <div class="card stats-card disease-card">
+
+        <div class="card-body">
+
+            <h5>🦠 Most Common Disease</h5>
+
+            {% if common_disease %}
+
+            <h3>{{ common_disease[0] }}</h3>
+
+            <p>
+                {{ common_disease[1] }} Cases
+            </p>
+
+            {% else %}
+
+            <p>No Data</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+    <div class="card stats-card best-doctor-card">
+
+        <div class="card-body">
+
+            <h5>⭐ Best Rated Doctor</h5>
+
+            {% if best_doctor %}
+
+            <h3>{{ best_doctor[0] }}</h3>
+
+            <p>
+                Rating: ⭐ {{ best_doctor[1] }}
+            </p>
+
+            {% else %}
+
+            <p>No Data</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+            <div class="col-md-4 mb-3">
+
+    <div class="card stats-card today-appointment-card">
+
+        <div class="card-body">
+
+            <h5>📅 Today's Appointments</h5>
+
+            <h1>{{ today_appointments }}</h1>
+
+        </div>
+
+    </div>
+
+</div>
+            
+            <div class="col-md-4 mb-3">
+
+    <div class="card stats-card bills-card">
+
+        <div class="card-body">
+
+            <h5>🧾 Total Bills</h5>
+
+            <h1>{{ total_bills }}</h1>
+
+        </div>
+
+    </div>
+
+</div>
+           
+             <div class="col-md-4 mb-3">
+
+                <div class="card stats-card prescription-card">
+
+                    <div class="card-body">
+
+                        <h5>💊 Total Prescriptions</h5>
+
+                        <h1>{{ total_prescriptions }}</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card waiting-card">
+
+                    <div class="card-body">
+
+                        <h5>Waiting</h5>
+
+                        <h1>
+                            {{ waiting }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card completed-card">
+
+                    <div class="card-body">
+
+                        <h5>Completed</h5>
+
+                        <h1>
+                            {{ completed }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="card stats-card cancelled-card">
+
+                    <div class="card-body">
+
+                        <h5>Cancelled</h5>
+
+                        <h1>
+                            {{ cancelled }}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Recent Appointments -->
+
+        <div class="card shadow mt-4">
+
+            <div class="card-header bg-dark text-white">
+
+                <h5 class="mb-0">
+                    Recent Appointments
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-light">
+
+                    <tr>
+
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Token</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for a in recent_appointments %}
+
+                    <tr>
+
+                        <td>{{ a[1] }}</td>
+                        <td>{{ a[2] }}</td>
+                        <td>{{ a[4] }}</td>
+                        <td>{{ a[5] }}</td>
+
+                        <td>
+
+                            {% if a[6] == 'Completed' %}
+
+                            <span class="badge bg-success">
+                                Completed
+                            </span>
+
+                            {% elif a[6] == 'Cancelled' %}
+
+                            <span class="badge bg-danger">
+                                Cancelled
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-warning text-dark">
+                                Waiting
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+            <div class="card shadow mt-4">
+
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">🧾 Recent Bills</h5>
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Total Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for b in recent_bills %}
+
+            <tr>
+                <td>{{ b[0] }}</td>
+                <td>{{ b[1] }}</td>
+                <td>{{ b[2] }}</td>
+                <td>₹ {{ b[6] }}</td>
+                <td>{{ b[7] }}</td>
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+     <div class="card shadow-lg mt-4 analytics-card">
+
+      <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">📊 Hospital Analytics</h4>
+      </div>
+
+      <div class="card-body">
+
+        <div style="height:220px;">
+            <canvas id="hospitalChart"></canvas>
+        </div>
+
+      </div>
+
+     </div>
+     <div class="row mt-4">
+
+    <!-- Recent Patients -->
+
+    <div class="col-md-6">
+
+        <div class="card shadow-lg">
+
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">👨‍⚕️ Recent Patients</h5>
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for p in recent_patients %}
+
+                    <tr>
+                        <td>{{ p[1] }}</td>
+                        <td>{{ p[4] }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Doctors -->
+
+    <div class="col-md-6">
+
+        <div class="card shadow-lg">
+
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">🩺 Recent Doctors</h5>
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for d in recent_doctors %}
+
+                    <tr>
+                        <td>{{ d[1] }}</td>
+                        <td>{{ d[2] }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    </div>
+
+</div>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('hospitalChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+            'Patients',
+            'Doctors',
+            'Appointments',
+            'Revenue'
+        ],
+
+        datasets: [{
+            label: 'Hospital Records',
+
+            data: [
+                {{ total_patients }},
+                {{ total_doctors }},
+                {{ total_appointments }},
+                {{ total_revenue }}
+            ],
+
+            backgroundColor: [
+                '#3B82F6',
+                '#10B981',
+                '#F59E0B',
+                '#EC4899'
+            ],
+
+            borderRadius: 12
+        }]
+    },
+
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+
+});
+
+</script>
+</body>
+</html>

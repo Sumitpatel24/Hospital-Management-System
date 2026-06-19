@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hospital Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    background:rgba(255,255,255,.08)!important;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+    padding:15px 0;
+}
+
+.navbar-brand{
+    color:white!important;
+    font-size:32px;
+    font-weight:800;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 0;
+}
+
+.hero-card{
+    width:100%;
+    max-width:1100px;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:30px;
+
+    padding:60px;
+
+    text-align:center;
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+}
+
+.hero-title{
+    color:white;
+    font-size:65px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.hero-subtitle{
+    color:#cbd5e1;
+    font-size:20px;
+    margin-bottom:40px;
+    line-height:1.7;
+}
+
+/* ================= BUTTONS ================= */
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.hero-buttons .btn{
+    min-width:220px;
+    padding:16px 30px;
+    border-radius:15px;
+    font-size:18px;
+    font-weight:700;
+    border:none;
+    transition:.3s;
+}
+
+.hero-buttons .btn:hover{
+    transform:translateY(-5px);
+    color:white;
+}
+
+/* Admin */
+
+.start-btn{
+    background:linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+    );
+    color:white;
+}
+
+/* Doctor */
+
+.doctor-btn{
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+    );
+    color:white;
+}
+
+/* Patient */
+
+.patient-btn{
+    background:linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+    );
+    color:white;
+}
+
+/* Register */
+
+.register-btn{
+    background:linear-gradient(
+    135deg,
+    #f59e0b,
+    #d97706
+    );
+    color:white;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    margin-top:60px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:35px 20px;
+
+    color:white;
+
+    transition:.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.stat-number{
+    font-size:42px;
+    font-weight:800;
+}
+
+.stat-text{
+    color:#cbd5e1;
+    font-size:18px;
+}
+
+/* ================= FEATURES ================= */
+
+.section-title{
+    color:white;
+    text-align:center;
+    font-size:45px;
+    font-weight:800;
+    margin-bottom:50px;
+}
+
+.feature-box{
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    color:white;
+
+    transition:.3s;
+
+    height:100%;
+}
+
+.feature-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.feature-box h3{
+    font-size:22px;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.feature-box p{
+    color:#cbd5e1;
+    line-height:1.7;
+    margin:0;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    color:#cbd5e1;
+    padding:30px;
+    font-size:16px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .hero-card{
+        padding:30px;
+    }
+
+    .hero-title{
+        font-size:40px;
+    }
+
+    .hero-subtitle{
+        font-size:16px;
+    }
+
+    .hero-buttons .btn{
+        width:100%;
+    }
+
+    .stat-number{
+        font-size:32px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="navbar-brand" href="#">
+    🏥 HMS Pro
+</a>
+
+<div class="ms-auto">
+
+    <a href="/login" class="btn btn-light me-2">
+        👨‍💼 Admin Login
+    </a>
+
+    <a href="/doctor_login" class="btn btn-primary me-2">
+        👨‍⚕️ Doctor Login
+    </a>
+
+    <a href="/patient_login" class="btn btn-success me-2">
+        🧑 Patient Login
+    </a>
+
+    <a href="/patient_register" class="btn btn-warning">
+        📝 Patient Register
+    </a>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-card">
+
+    <h1 class="hero-title">
+        🏥 Hospital Management System
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Manage Patients, Doctors, Appointments,
+        Prescriptions, Billing and Reports from
+        one powerful dashboard.
+
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="/login" class="btn start-btn me-2">
+            👨‍💼 Admin Login
+        </a>
+
+        <a href="/doctor_login" class="btn btn-primary me-2">
+            👨‍⚕️ Doctor Login
+        </a>
+
+        <a href="/patient_login" class="btn patient-btn me-2">
+            🧑 Patient Login
+        </a>
+
+        <a href="/patient_register" class="btn register-btn">
+            📝 Patient Register
+        </a>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="row stats mt-5">
+
+        <div class="col-md-4 mb-3">
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    {{ total_patients }}
+                </div>
+
+                <div class="stat-text">
+                    Patients Managed
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                   {{ total_doctors }}
+                </div>
+
+                <div class="stat-text">
+                    Doctors
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    {{ total_appointments }}<h6>Appointments</h6>
+                </div>
+
+                <div class="stat-text">
+                    Hospital Support
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Features -->
+
+<section class="container mb-5">
+
+<h2 class="section-title">
+    🚀 System Features
+</h2>
+
+<div class="row">
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>👨‍⚕️ Doctor Management</h3>
+        <p>Add, Update, Search and Manage Doctors Easily.</p>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>🧑‍🤝‍🧑 Patient Management</h3>
+        <p>Securely Store and Manage Patient Records.</p>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>📅 Appointment Booking</h3>
+        <p>Book and Track Patient Appointments.</p>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>💊 Prescription Module</h3>
+        <p>Generate and Manage Digital Prescriptions.</p>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>💰 Billing System</h3>
+        <p>Create Bills and Track Revenue Easily.</p>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="feature-box">
+        <h3>📊 Reports & Analytics</h3>
+        <p>Monitor Hospital Performance with Reports.</p>
+    </div>
+</div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<div class="footer">
+
+© 2026 Hospital Management System |
+Developed Using Flask + MySQL
+
+</div>
+
+</body>
+
+</html>

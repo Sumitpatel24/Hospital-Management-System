@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Patient</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #312e81
+    );
+}
+
+/* Main Card */
+
+.patient-card{
+    width:100%;
+    max-width:900px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+}
+
+/* Header */
+
+.card-header{
+    padding:30px 40px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(15,23,42,.95),
+        rgba(30,41,59,.95)
+    );
+
+    border:none;
+}
+
+.card-header h2{
+    color:white;
+    font-size:38px;
+    font-weight:800;
+    margin:0;
+}
+
+/* Body */
+
+.card-body{
+    padding:40px;
+}
+
+/* Titles */
+
+.page-title{
+    color:white;
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    color:#cbd5e1;
+    margin-bottom:35px;
+    font-size:15px;
+}
+
+/* Labels */
+
+.form-label{
+    color:white;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+/* Inputs */
+
+.form-control,
+.form-select{
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.20);
+
+    color:white;
+
+    border-radius:15px;
+
+    padding:15px 18px;
+
+    transition:.3s;
+}
+
+.form-control::placeholder{
+    color:#cbd5e1;
+}
+
+.form-control:focus,
+.form-select:focus{
+    background:rgba(255,255,255,.15);
+
+    border:1px solid #60a5fa;
+
+    color:white;
+
+    box-shadow:
+    0 0 0 4px rgba(96,165,250,.25);
+}
+
+.form-select option{
+    color:black;
+}
+
+/* Textarea */
+
+textarea.form-control{
+    resize:none;
+    min-height:120px;
+}
+
+/* Update Button */
+
+.update-btn{
+    height:60px;
+
+    border:none;
+
+    border-radius:16px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
+
+    transition:.3s;
+}
+
+.update-btn:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 30px rgba(16,185,129,.35);
+}
+
+/* Back Button */
+
+.back-btn{
+    height:60px;
+
+    border-radius:16px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    border:none;
+
+    background:white;
+
+    color:#111827;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-4px);
+    background:#f3f4f6;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    body{
+        padding:20px;
+    }
+
+    .card-header h2{
+        font-size:28px;
+    }
+
+    .page-title{
+        font-size:24px;
+    }
+
+    .card-body{
+        padding:25px;
+    }
+
+    .update-btn,
+    .back-btn{
+        margin-bottom:10px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="patient-card">
+
+    <div class="card-header">
+
+        <h2>👨‍⚕️ Edit Patient</h2>
+
+    </div>
+
+    <div class="card-body">
+
+        <h4 class="page-title">
+            Patient Information
+        </h4>
+
+        <p class="page-subtitle">
+            Update patient details and save changes.
+        </p>
+
+        <form method="POST">
+
+            <label class="form-label">
+                Patient Name
+            </label>
+
+            <input type="text"
+                   name="name"
+                   value="{{ patient[1] }}"
+                   class="form-control mb-4"
+                   required>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Age
+                    </label>
+
+                    <input type="number"
+                           name="age"
+                           value="{{ patient[2] }}"
+                           class="form-control mb-4"
+                           required>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Gender
+                    </label>
+
+                    <select name="gender"
+                            class="form-select mb-4"
+                            required>
+
+                        <option value="Male"
+                        {% if patient[3] == 'Male' %}selected{% endif %}>
+                            Male
+                        </option>
+
+                        <option value="Female"
+                        {% if patient[3] == 'Female' %}selected{% endif %}>
+                            Female
+                        </option>
+
+                        <option value="Other"
+                        {% if patient[3] == 'Other' %}selected{% endif %}>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <label class="form-label">
+                Phone Number
+            </label>
+
+            <input type="text"
+                   name="phone"
+                   value="{{ patient[4] }}"
+                   class="form-control mb-4"
+                   maxlength="10"
+                   required>
+
+            <label class="form-label">
+                Disease / Problem
+            </label>
+
+            <textarea name="disease"
+                      class="form-control mb-4"
+                      style="height:120px;"
+                      required>{{ patient[5] }}</textarea>
+
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <button type="submit"
+                            class="btn update-btn w-100">
+
+                        ✅ Update Patient
+
+                    </button>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <a href="/patients"
+                       class="btn btn-light back-btn w-100">
+
+                        ← Back
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
