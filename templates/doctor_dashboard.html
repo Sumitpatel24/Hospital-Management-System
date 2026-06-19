@@ -299,49 +299,101 @@ body{
     }
 }
 
+/* Header Buttons */
+
+.header-actions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.change-password-btn{
+    background:linear-gradient(
+        135deg,
+        #facc15,
+        #eab308
+    );
+    color:#111827;
+    padding:12px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+    border:none;
+}
+
+.change-password-btn:hover{
+    transform:translateY(-2px);
+    color:#111827;
+    box-shadow:0 10px 20px rgba(250,204,21,.35);
+}
+
+.logout-btn{
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+    color:white;
+    padding:12px 25px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(239,68,68,.35);
+}
+
 </style>
 
 </head>
-
 <body>
 
 <div class="dashboard">
 
-<!-- Header -->
+    <!-- Header -->
 
-<div class="header-card">
+    <div class="header-card">
 
-    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
 
-        <div>
+            <div>
 
-            <h1>
-                👨‍⚕️ Welcome Dr. {{ doctor_name }}
-            </h1>
+                <h1>
+                    👨‍⚕️ Welcome Dr. {{ doctor_name }}
+                </h1>
 
-            <p>
-                Manage appointments and prescriptions
-            </p>
-        
-            <a href="/doctor_change_password"
-                class="btn btn-warning">
+                <p>
+                    Manage appointments and prescriptions
+                </p>
 
-                🔐 Change Password
+            </div>
 
-            </a>
+            <div class="d-flex gap-2 mt-3 mt-md-0">
+
+                <a href="/doctor_change_password"
+                   class="btn btn-warning fw-bold px-4 py-2">
+
+                    🔐 Change Password
+
+                </a>
+
+                <a href="/doctor_logout"
+                   class="logout-btn">
+
+                    Logout
+
+                </a>
+
+            </div>
 
         </div>
 
-        <a href="/doctor_logout"
-           class="logout-btn">
-
-            Logout
-
-        </a>
-
     </div>
-
-</div>
 
 <!-- Statistics Row -->
 
